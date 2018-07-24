@@ -2,8 +2,10 @@
 currentLevel = 0
 
 displayUI = true
+leftDown = false
+rightDown = false
 
-function setup() {
+function setup () {
 
   var w = 1200
   var h = 768
@@ -19,7 +21,7 @@ function setup() {
 
 }
 
-function drawLevel(lvl){
+function drawLevel (lvl){
   switch(lvl){
     case 0:
       image(tower0, 0, 0, width, height)
@@ -32,7 +34,7 @@ function drawLevel(lvl){
   }
 }
 
-function tick(){
+function tick (){
 
 }
 
@@ -58,33 +60,42 @@ function displayBackground (bkg) {
 }
 
 function speak (colour, name, words) {
+  if (displayUI == true) {
+    image (textBox, width/2 - width*9/20, height - textBox.height)
 
-  image (textBox, width/2 - width*9/20, height - textBox.height, width*9/10, textBox.height)
 
+    textAlign (LEFT)
+    textFont('Georgia')
 
-  strokeWeight (5)
-  textAlign (LEFT)
-  //textFont (skia)
+    strokeWeight (4)
+    textSize (35)
+    stroke (0, 0, 0)
+    fill (colour[0], colour[1], colour[2])
+    text (name, width/10, height*8/10)
 
-  textSize (20)
-  stroke (0, 0, 0)
-  fill (colour[0], colour[1], colour[2])
-  text (name, width/10, height*8/10)
-
-  strokeWeight (3)
-  textSize (20)
-  fill (255, 255, 255)
-  text (words, width/8, height*6/7)
+    strokeWeight (4)
+    textSize (30)
+    fill (255, 255, 255)
+    text (words, width/8, height*9/10)
+  }
 }
 
 function keyPressed () {
   if (keyCode == 32) {
     displayUI = !displayUI
   }
+  if (keyCode == 37) {
+    leftDown = true
+  }
+  if (keyCode == 39) {
+    rightDown = true
+  }
 }
 
-function draw() {
+function draw () {
   tick()
   drawLevel(currentLevel)
   story()
+
+  //console.log (eventIndex)
 }
