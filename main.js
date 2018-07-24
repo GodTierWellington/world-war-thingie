@@ -67,10 +67,11 @@ function speak (colour, name, words) {
     textFont('Georgia')
     stroke (0, 0, 0)
 
+    textAlign (CENTER)
     strokeWeight (5)
     textSize (35)
     fill (colour[0], colour[1], colour[2])
-    text (name, width/2 - textBox.width/2 + 60, height - textBox.height + 60)
+    text (name, width/2 - textBox.width/3, height - textBox.height*5/6 + 15)
 
     textAlign (LEFT)
     strokeWeight (4)
