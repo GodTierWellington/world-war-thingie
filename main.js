@@ -1,5 +1,4 @@
 //http://molleindustria.github.io/p5.play/examples/index.html?fileName=sprite2.js
-
 currentLevel = 0
 
 colourArray = [[0, 0, 0], [255, 255, 255]]
@@ -20,14 +19,6 @@ function setup() {
   drawLevel(0)
 
 
-}
-
-function loadAssets(){
-  //images
-  pasha = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/pasha.jpg")
-  tower0 = loadImage("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/level0.png")
-  tower1 = loadImage("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/level1.png")
-  textBox = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/textbox.png")
 }
 
 function drawLevel(lvl){
@@ -64,6 +55,10 @@ function displayWaifu (img, position) {
   image (img, x - img.width/2, height - img.height)
 }
 
+function displayBackground (bkg) {
+  image (bkg, 0, 0)
+}
+
 function speak (colour, name, words) {
 
   image (textBox, width/2 - width*9/20, height - textBox.height, width*9/10, textBox.height)
@@ -84,6 +79,8 @@ function speak (colour, name, words) {
 }
 
 function story() {
+
+  displayBackground (moscow_b)
 
   displayWaifu (pasha, "CENTER")
   if (displayUI == true) {
