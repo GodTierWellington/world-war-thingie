@@ -1,8 +1,6 @@
 //http://molleindustria.github.io/p5.play/examples/index.html?fileName=sprite2.js
 currentLevel = 0
 
-colourArray = [[0, 0, 0], [255, 255, 255]]
-
 displayUI = true
 
 function setup() {
@@ -78,22 +76,6 @@ function speak (colour, name, words) {
   text (words, width/8, height*6/7)
 }
 
-function story() {
-
-  displayBackground (moscow_b)
-
-  displayWaifu (pasha, "CENTER")
-  if (displayUI == true) {
-    speak (colourArray[1], "Pasha",
-    "I like to eat big kebab I like to eat big kebab \n" +
-    "I like to eat big kebab I like to eat big kebab \n" +
-    "I like to eat big kebab I like to eat big kebab \n" +
-    "I like to eat big kebab I like to eat big kebab \n"
-    )
-  }
-
-}
-
 function keyPressed () {
   if (keyCode == 32) {
     displayUI = !displayUI
@@ -102,7 +84,6 @@ function keyPressed () {
 
 function draw() {
   tick()
-  background (200, 200, 200)
   drawLevel(currentLevel)
   story()
 }

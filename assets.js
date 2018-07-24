@@ -7,4 +7,11 @@ function loadAssets () {
 
     //backgrounds
     moscow_b = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/Backgrounds/moscow.png")
+
+    skia =  loadFont ("")
   }
+
+sov_c = [186, 3, 12]
+ger_c = [102, 102, 102]
+jap_c = [249, 236, 177]
+all_c = [31, 103, 226]
