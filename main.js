@@ -64,19 +64,19 @@ function speak (colour, name, words) {
     image (textBox, width/2 - textBox.width/2, height - textBox.height)
 
 
-    textAlign (LEFT)
     textFont('Georgia')
-
-    strokeWeight (4)
-    textSize (35)
     stroke (0, 0, 0)
-    fill (colour[0], colour[1], colour[2])
-    text (name, width/2, height/2)
 
+    strokeWeight (5)
+    textSize (35)
+    fill (colour[0], colour[1], colour[2])
+    text (name, width/2 - textBox.width/2 + 60, height - textBox.height + 60)
+
+    textAlign (LEFT)
     strokeWeight (4)
     textSize (30)
     fill (255, 255, 255)
-    text (words, width/8, height - textBox.height/3)
+    text (words, width/8, height - textBox.height/2 + 15)
   }
 }
 
