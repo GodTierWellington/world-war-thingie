@@ -61,7 +61,7 @@ function displayBackground (bkg) {
 
 function speak (colour, name, words) {
   if (displayUI == true) {
-    image (textBox, width/2 - width*9/20, height - textBox.height)
+    image (textBox, width/2 - textBox.width/2, height - textBox.height)
 
 
     textAlign (LEFT)
@@ -71,12 +71,12 @@ function speak (colour, name, words) {
     textSize (35)
     stroke (0, 0, 0)
     fill (colour[0], colour[1], colour[2])
-    text (name, width/10, height*8/10)
+    text (name, width/2, height/2)
 
     strokeWeight (4)
     textSize (30)
     fill (255, 255, 255)
-    text (words, width/8, height*9/10)
+    text (words, width/8, height - textBox.height/3)
   }
 }
 
