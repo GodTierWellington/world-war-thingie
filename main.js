@@ -10,13 +10,19 @@ function setup() {
   createCanvas (width, height)
   var img = loadImage("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/ahmed.jpg")
 
-  console.log (img.width)
+  background (230, 230, 230)
+  // Displays the image at its actual size at point (0,0)
+  image (img, 0, 0);
 
-  background(230, 230, 230)
+  drawTitle ()
 
-  pasha = createSprite (0,0,100,100)
-  pasha.addImage (img)
+}
 
+function drawTitle () {
+  textSize (40)
+  stroke (255,0,0)
+  textAlign (RIGHT)
+  text("Triangle", width/2, 40)
 }
 
 function tick(){
