@@ -8,7 +8,7 @@ function loadAssets () {
     //backgrounds
     moscow_b = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/Backgrounds/moscow.png")
 
-    skia =  loadFont ("")
+    skia =  loadFont ("https://github.com/GodTierWellington/world-war-waifu/blob/master/assets/Fonts/Skia.ttf")
   }
 
 sov_c = [186, 3, 12]

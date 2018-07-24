@@ -64,8 +64,9 @@ function speak (colour, name, words) {
 
   strokeWeight (5)
   textAlign (LEFT)
+  //textFont (skia)
 
-  textSize (30)
+  textSize (20)
   stroke (0, 0, 0)
   fill (colour[0], colour[1], colour[2])
   text (name, width/10, height*8/10)
