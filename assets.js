@@ -6,7 +6,7 @@ function loadAssets () {
     textBox = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/textbox.png")
 
     //backgrounds
-    moscow_b = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/backgrounds/moscow.png")
+    moscow_b = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/background/moscow.png")
   }
 
 sov_c = [186, 3, 12]
