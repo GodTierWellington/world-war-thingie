@@ -4,10 +4,12 @@ currentLevel = 0
 
 colourArray = [[0, 0, 0], [255, 255, 255]]
 
+displayUI = true
+
 function setup() {
 
-  var w = 800
-  var h = 600
+  var w = 1200
+  var h = 768
 
 
   createCanvas (w, h)
@@ -25,7 +27,7 @@ function loadAssets(){
   pasha = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/pasha.jpg")
   tower0 = loadImage("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/level0.png")
   tower1 = loadImage("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/level1.png")
-  textBox = loadImage ("https://img00.deviantart.net/d495/i/2015/231/3/2/white_and_blue_textbox_by_afiniwind-d96bnih.png")
+  textBox = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/textbox.png")
 }
 
 function drawLevel(lvl){
@@ -39,13 +41,6 @@ function drawLevel(lvl){
     default:
       console.log("Unkown level");
   }
-}
-
-function drawTitle () {
-  textSize (40)
-  stroke (255,0,0)
-  textAlign (RIGHT)
-  text("Triangle", width/2, 40)
 }
 
 function tick(){
@@ -69,26 +64,48 @@ function displayWaifu (img, position) {
   image (img, x - img.width/2, height - img.height)
 }
 
-function speak (colour, words) {
+function speak (colour, name, words) {
 
-  image (textBox, x - textBox.width/2, heihgt - textBox.height)
-  textSize (20)
-  strokeWeight (2)
+  image (textBox, width/2 - width*9/20, height - textBox.height, width*9/10, textBox.height)
+
+
+  strokeWeight (5)
+  textAlign (LEFT)
+
+  textSize (30)
   stroke (0, 0, 0)
   fill (colour[0], colour[1], colour[2])
-  textAlign (LEFT)
-  text (words, 0, height*6/7)
+  text (name, width/10, height*8/10)
+
+  strokeWeight (3)
+  textSize (20)
+  fill (255, 255, 255)
+  text (words, width/8, height*6/7)
+}
+
+function story() {
+
+  displayWaifu (pasha, "CENTER")
+  if (displayUI == true) {
+    speak (colourArray[1], "Pasha",
+    "I like to eat big kebab I like to eat big kebab \n" +
+    "I like to eat big kebab I like to eat big kebab \n" +
+    "I like to eat big kebab I like to eat big kebab \n" +
+    "I like to eat big kebab I like to eat big kebab \n"
+    )
+  }
+
+}
+
+function keyPressed () {
+  if (keyCode == 32) {
+    displayUI = !displayUI
+  }
 }
 
 function draw() {
   tick()
   background (200, 200, 200)
   drawLevel(currentLevel)
-  displayWaifu (pasha, "RIGHT")
-  speak (colourArray[0], "I like to eat big kebab I like to eat big kebab \n" +
-  "I like to eat big kebab I like to eat big kebab \n" +
-  "I like to eat big kebab I like to eat big kebab \n" +
-  "I like to eat big kebab I like to eat big kebab \n")
-
-  drawTitle ()
+  story()
 }
