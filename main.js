@@ -24,12 +24,17 @@ function loadAssets(){
   //images
   pasha = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/pasha.jpg")
   tower0 = loadImage("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/level0.png")
+  tower1 = loadImage("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/level1.png")
+  textBox = loadImage ("https://img00.deviantart.net/d495/i/2015/231/3/2/white_and_blue_textbox_by_afiniwind-d96bnih.png")
 }
 
 function drawLevel(lvl){
   switch(lvl){
     case 0:
       image(tower0, 0, 0, width, height)
+      break;
+    case 1:
+      image(tower1, 0, 0, width, height)
       break;
     default:
       console.log("Unkown level");
@@ -66,12 +71,13 @@ function displayWaifu (img, position) {
 
 function speak (colour, words) {
 
+  image (textBox, x - textBox.width/2, heihgt - textBox.height)
   textSize (20)
   strokeWeight (2)
   stroke (0, 0, 0)
   fill (colour[0], colour[1], colour[2])
-  textAlign (RIGHT)
-  text (words, width/2, height)
+  textAlign (LEFT)
+  text (words, 0, height*6/7)
 }
 
 function draw() {
@@ -79,10 +85,10 @@ function draw() {
   background (200, 200, 200)
   drawLevel(currentLevel)
   displayWaifu (pasha, "RIGHT")
-  speak (colourArray[0], "I like to eat big kebab I like to eat big kebab" +
-  "I like to eat big kebab I like to eat big kebab" +
-  "I like to eat big kebab I like to eat big kebab" +
-  "I like to eat big kebab I like to eat big kebab")
+  speak (colourArray[0], "I like to eat big kebab I like to eat big kebab \n" +
+  "I like to eat big kebab I like to eat big kebab \n" +
+  "I like to eat big kebab I like to eat big kebab \n" +
+  "I like to eat big kebab I like to eat big kebab \n")
 
   drawTitle ()
 }
