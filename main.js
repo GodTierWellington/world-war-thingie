@@ -2,7 +2,7 @@
 currentLevel = 0
 
 displayUI = true
-mouseDown = false
+mouseClick = false
 leftDown = false
 rightDown = false
 
@@ -26,14 +26,21 @@ function mouseCollisionDetection (object) {
 
   object.forEach (function (obj) {
     if (mouseX >= obj.posX && mouseX <= obj.posX+obj.width && mouseY >= obj.posY && mouseY <= obj.posY+obj.height) {
-      eval (obj.action)
+      if (mouseClick) {
+        eval (obj.action)
+        mouseClick = false
+      } else {
+        if (obj.width == button_ui.width) {
+          b1 = new displayButton (obj.words, obj.posX, obj.posY, obj.action, true)
+        }
+      }
     }
   })
 }
 
 
 function mousePressed () {
-  mouseDown = true
+  mouseClick = true
 }
 
 function drawLevel (lvl){
@@ -75,17 +82,24 @@ function displayBackground (bkg) {
   image (bkg, 0, 0)
 }
 
-function displayButton (words, posX, posY, action) {
-  
+function displayButton (words, posX, posY, action, highlighted) {
+
   this.posX = width/2 - button_ui.width/2 + posX
   this.posY = height/2 - button_ui.height/2 - posY
   this.width = button_ui.width
   this.height = button_ui.height
   this.action = action
+  this.highlighted = highlighted
 
   //make it turn a different colour when pressed and add this code to the "action" string so that it turns a different colour when clicked
 
-  image (button_ui, width/2 - button_ui.width/2 + posX, height/2 - button_ui.height/2 - posY)
+  if (highlighted) {
+    img = button_ui_s
+  } else {
+    img = button_ui
+  }
+
+  image (img, width/2-img.width/2+posX, height/2-img.height/2-posY)
 
   textFont('Georgia')
   stroke (0, 0, 0)
@@ -127,13 +141,8 @@ function speak (colour, name, words) {
 function makeChoice (options) {
 
   for (i = 0; i < options.length; i++) {
-    b1 = new displayButton (options[i][0], 0, (button_ui.height+30)*(options.length/2-0.5-i), options[i][1])
-    //console.log (b1.posX + ", " + b1.posY)
-    //console.log (mouseX + ", " + mouseY)
-    if (mouseDown) {
-      mouseCollisionDetection ([b1])
-      mouseDown = false
-    }
+    button = new displayButton (options[i][0], 0, (button_ui.height+30)*(options.length/2-0.5-i), options[i][1])
+    mouseCollisionDetection ([button])
   }
 }
 
