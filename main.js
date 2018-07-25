@@ -31,7 +31,7 @@ function mouseCollisionDetection (object) {
         mouseClick = false
       } else {
         if (obj.width == button_ui.width) {
-          b1 = new displayButton (obj.words, obj.posX, obj.posY, obj.action, true)
+          b1 = new displayButton (obj.words, obj.posX-width/2+obj.width/2, obj.posY+height/2+obj.height/2, obj.action, true)
         }
       }
     }
