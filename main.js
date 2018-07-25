@@ -13,7 +13,6 @@ function setup () {
 
   createCanvas (w, h)
   loadAssets()
-  background (255, 255, 255)
   // Displays the image at its actual size at point (0,0)
 
   drawLevel(0)
