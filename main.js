@@ -13,10 +13,9 @@ function setup () {
   var w = 1200
   var h = 768
 
+  loadAssets ()
   createCanvas (w, h)
   background ('white')
-  loadAssets()
-
   drawLevel(0)
 }
 

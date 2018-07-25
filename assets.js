@@ -12,9 +12,12 @@ function loadAssets () {
     moscow_b = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/background/moscow.png")
 
     map = loadImage ("https://upload.wikimedia.org/wikipedia/commons/e/e3/Ww2_allied_axis_1939_sep.PNG")
-  }
+    ussr_i = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/ussr_icon.png")
 
-sov_c = [186, 3, 12]
-ger_c = [102, 102, 102]
-jap_c = [249, 236, 177]
-all_c = [31, 103, 226]
+    sov_c = [186, 3, 12]
+    ger_c = [102, 102, 102]
+    jap_c = [249, 236, 177]
+    all_c = [31, 103, 226]
+
+    elementList = [new mapElement (ussr_i, 750, 25)]
+  }
