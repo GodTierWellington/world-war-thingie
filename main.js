@@ -2,6 +2,7 @@
 currentLevel = 0
 
 displayUI = true
+mouseDown = false
 leftDown = false
 rightDown = false
 
@@ -18,6 +19,17 @@ function setup () {
   drawLevel(0)
 
 
+}
+
+function collisionDetection (object) {
+  if (mouseX >= object.posX && mouseX <= object.posX+object.width && mouseY >= object.posY && mouseY <= object.posY+object.height) {
+
+  }
+}
+
+
+function mousePressed () {
+  mouseDown = true
 }
 
 function drawLevel (lvl){
@@ -58,23 +70,32 @@ function displayBackground (bkg) {
   image (bkg, 0, 0)
 }
 
-function displayButton (words) {
-  image (button_ui, width/2 - button_ui.width/2, height/2 - button_ui.height/2)
+function displayButton (words, posX, posY, action) {
+
+  this.posX = width/2 - button_ui.width/2 + posX
+  this.posY = height/2 - button_ui.height/2 - posY
+  this.width = button_ui.width
+  this.height = button_ui.height
+  this.action = action
+
+  image (button_ui, width/2 - button_ui.width/2 + posX, height/2 - button_ui.height/2 - posY)
 
   textFont('Georgia')
   stroke (0, 0, 0)
-  textAlign (LEFT)
+  textAlign (CENTER)
   strokeWeight (4)
   textSize (30)
   fill (255, 255, 255)
-  text (words, width/2 - button_ui.width/2, height/2 + 10)
+  text (words, width/2 + posX, height/2 + 10 - posY)
 }
+
+
 
 function speak (colour, name, words) {
 
   if (displayUI == true) {
+
     image (textbox_ui, width/2 - textbox_ui.width/2, height - textbox_ui.height)
-    displayButton ("DAD")
 
     textFont('Georgia')
     stroke (0, 0, 0)
@@ -90,6 +111,16 @@ function speak (colour, name, words) {
     textSize (30)
     fill (255, 255, 255)
     text (words, width/8, height - textbox_ui.height/2 + 15)
+
+    makeChoice ([["Click this!", "console.log ('YAY!')"]])
+  }
+}
+
+//options is an array that contains a string and then an eval statement
+function makeChoice (options) {
+
+  for (i = 0; i < options.length; i++) {
+    b1 = new displayButton (options[i][0], 0, (button_ui.height+30)*(options.length/2-0.5-i), options[i][1])
   }
 }
 
