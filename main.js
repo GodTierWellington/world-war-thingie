@@ -14,6 +14,7 @@ function setup () {
   var h = 768
 
   loadAssets ()
+  loadMapElements ()
   createCanvas (w, h)
   background ('white')
   drawLevel(0)
@@ -32,13 +33,23 @@ function draw () {
 function mouseCollisionDetection (object) {
   //this array meme is pretty unneeded to be honest!
   object.forEach (function (obj) {
-    if (mouseX >= obj.posX && mouseX <= obj.posX+obj.width && mouseY >= obj.posY && mouseY <= obj.posY+obj.height) {
-      if (mouseClick) {
-        clicked = new displayButton (obj.words, obj.posX_o, obj.posY_o, obj.action, obj.type+"_c")
-        eval (obj.action)
-        mouseClick = false
-      } else {
-        button_selected = new displayButton (obj.words, obj.posX_o, obj.posY_o, obj.action, obj.type+"_s")
+    if (obj.type.startsWith ('b')) {
+      if (mouseX >= obj.posX && mouseX <= obj.posX+obj.width && mouseY >= obj.posY && mouseY <= obj.posY+obj.height) {
+        if (mouseClick) {
+          clicked = new displayButton (obj.words, obj.posX_, obj.posY_, obj.type+"_c", obj.action)
+          eval (obj.action)
+          mouseClick = false
+        } else {
+          button_selected = new displayButton (obj.words, obj.posX_, obj.posY_, obj.type+"_s", obj.action)
+        }
+      }
+    } else if (obj.type.startsWith ('i')) {
+      console.log (Math.sqrt(Math.pow(mouseX-obj.posX+obj.width/2, 2) + Math.pow(mouseY-obj.posY+obj.width/2, 2)))
+      console.log (obj.width/2)
+      if (Math.sqrt(Math.pow(mouseX-obj.posX, 2) + Math.pow(mouseY-obj.posY, 2)) <= obj.width/2) {
+        if (mouseClick) {
+          eval (obj.action)
+        }
       }
     }
   })
@@ -124,10 +135,10 @@ function displayBackground (bkg) {
   image (bkg, 0, 0)
 }
 
-function displayButton (words, posX, posY, action, type) {
+function displayButton (words, posX, posY, type, action) {
 
-  this.posX_o = posX
-  this.posY_o = posY
+  this.posX_ = posX
+  this.posY_ = posY
   this.posX = width/2 - button_ui.width/2 + posX
   this.posY = height/2 - button_ui.height/2 - posY
   this.width = button_ui.width
@@ -186,8 +197,8 @@ function makeChoice (options) {
   if (displayUI == true) {
     for (i = 0; i < options.length; i++) {
       _action = "eventIndex = " + options[i][1]
-      button = new displayButton (options[i][0], 0, (button_ui.height+30)*(options.length/2-0.5-i), _action, "b")
-      mouseCollisionDetection ([button])
+      button = new displayButton (options[i][0], 0, (button_ui.height+30)*(options.length/2-0.5-i), 'b', _action)
+      mouseCollisionDetection ([button], "square")
     }
   }
 }
