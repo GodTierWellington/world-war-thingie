@@ -58,10 +58,15 @@ function displayBackground (bkg) {
   image (bkg, 0, 0)
 }
 
-function speak (colour, name, words) {
-  if (displayUI == true) {
-    image (textBox, width/2 - textBox.width/2, height - textBox.height)
+function displayButton () {
+  image (button_ui, width/2 - button_ui.width/2, height/2 - button_ui.height/2)
+}
 
+function speak (colour, name, words) {
+
+  if (displayUI == true) {
+    image (textbox_ui, width/2 - textbox_ui.width/2, height - textbox_ui.height)
+    displayButton ()
 
     textFont('Georgia')
     stroke (0, 0, 0)
@@ -70,13 +75,13 @@ function speak (colour, name, words) {
     strokeWeight (5)
     textSize (35)
     fill (colour[0], colour[1], colour[2])
-    text (name, width/2 - textBox.width/3, height - textBox.height*5/6 + 15)
+    text (name, width/2 - textbox_ui.width/3, height - textbox_ui.height*5/6 + 15)
 
     textAlign (LEFT)
     strokeWeight (4)
     textSize (30)
     fill (255, 255, 255)
-    text (words, width/8, height - textBox.height/2 + 15)
+    text (words, width/8, height - textbox_ui.height/2 + 15)
   }
 }
 
