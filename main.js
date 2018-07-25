@@ -67,7 +67,7 @@ function displayButton (words) {
   strokeWeight (4)
   textSize (30)
   fill (255, 255, 255)
-  text (words, width/2 - button_ui.width/2, height/2 - button_ui.height/2)
+  text (words, width/2 - button_ui.width/2, height/2 + 10)
 }
 
 function speak (colour, name, words) {
