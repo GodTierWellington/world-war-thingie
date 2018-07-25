@@ -12,6 +12,7 @@ function setup () {
   var h = 768
 
 
+  background (255, 255, 255)
   createCanvas (w, h)
   loadAssets()
   // Displays the image at its actual size at point (0,0)
@@ -21,10 +22,13 @@ function setup () {
 
 }
 
-function collisionDetection (object) {
-  if (mouseX >= object.posX && mouseX <= object.posX+object.width && mouseY >= object.posY && mouseY <= object.posY+object.height) {
+function mouseCollisionDetection (object) {
 
-  }
+  object.forEach (function (obj) {
+    if (mouseX >= obj.posX && mouseX <= obj.posX+obj.width && mouseY >= obj.posY && mouseY <= obj.posY+obj.height) {
+      eval (obj.action)
+    }
+  })
 }
 
 
@@ -49,6 +53,7 @@ function tick (){
 
 }
 
+
 function displayWaifu (img, position) {
 
   var x
@@ -71,12 +76,14 @@ function displayBackground (bkg) {
 }
 
 function displayButton (words, posX, posY, action) {
-
+  
   this.posX = width/2 - button_ui.width/2 + posX
   this.posY = height/2 - button_ui.height/2 - posY
   this.width = button_ui.width
   this.height = button_ui.height
   this.action = action
+
+  //make it turn a different colour when pressed and add this code to the "action" string so that it turns a different colour when clicked
 
   image (button_ui, width/2 - button_ui.width/2 + posX, height/2 - button_ui.height/2 - posY)
 
@@ -112,7 +119,7 @@ function speak (colour, name, words) {
     fill (255, 255, 255)
     text (words, width/8, height - textbox_ui.height/2 + 15)
 
-    makeChoice ([["Click this!", "console.log ('YAY!')"]])
+    makeChoice ([["Click this!", "console.log ('I have been clicked!')"]])
   }
 }
 
@@ -121,6 +128,12 @@ function makeChoice (options) {
 
   for (i = 0; i < options.length; i++) {
     b1 = new displayButton (options[i][0], 0, (button_ui.height+30)*(options.length/2-0.5-i), options[i][1])
+    //console.log (b1.posX + ", " + b1.posY)
+    //console.log (mouseX + ", " + mouseY)
+    if (mouseDown) {
+      mouseCollisionDetection ([b1])
+      mouseDown = false
+    }
   }
 }
 
