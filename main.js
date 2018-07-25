@@ -58,15 +58,23 @@ function displayBackground (bkg) {
   image (bkg, 0, 0)
 }
 
-function displayButton () {
+function displayButton (words) {
   image (button_ui, width/2 - button_ui.width/2, height/2 - button_ui.height/2)
+
+  textFont('Georgia')
+  stroke (0, 0, 0)
+  textAlign (LEFT)
+  strokeWeight (4)
+  textSize (30)
+  fill (255, 255, 255)
+  text (words, width/2 - button_ui.width/2, height/2 - button_ui.height/2)
 }
 
 function speak (colour, name, words) {
 
   if (displayUI == true) {
     image (textbox_ui, width/2 - textbox_ui.width/2, height - textbox_ui.height)
-    displayButton ()
+    displayButton ("DAD")
 
     textFont('Georgia')
     stroke (0, 0, 0)
