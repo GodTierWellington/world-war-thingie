@@ -25,7 +25,7 @@ function moveAroundMap () {
   } else if (downDown) {
     mapPosY += mapMovementSpeed
   }
-  
+
   drawMap ()
 }
 
