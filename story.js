@@ -7,7 +7,6 @@ function story() {
 
   //-----------------------------------------------------------------------------------------------------------------------------------
 
-  //Event 1
   events ()
 
 }
@@ -32,7 +31,7 @@ function events () {
 
     displayWaifu (pasha, "CENTER")
     speak (sov_c, 'Stalin',
-    'I like to eat big kebab I like to eat big kebab \n'
+    'I like to eat big kebab I like to eat big kebab'
     )
 
     change (1.0, 1.1)
@@ -43,16 +42,47 @@ function events () {
 
     displayWaifu (pasha, "CENTER")
     speak (sov_c, 'Stalin',
-    'I am the pasha! \n'
+    'I am the pasha!'
     )
 
-    change (1.0, 2.0)
+    change (1.0, 1.2)
 
     break
 
-    case 2.0:
+    case 1.2:
 
-    change (1.1, 2.0)
+    makeChoice ([["Click this!", 1.31],
+                ["Click this!", 1.32],
+                ["Click this!", 1.33]])
+
+    change (1.1, 1.2)
+
+    break
+
+    case 1.31:
+
+    displayWaifu (pasha, "CENTER")
+    speak (sov_c, 'Stalin',
+    'Motherland.'
+    )
+
+    break
+
+    case 1.32:
+
+    displayWaifu (pasha, "CENTER")
+    speak (sov_c, 'Stalin',
+    'Fat boi, big kebab.'
+    )
+
+    break
+
+    case 1.33:
+
+    displayWaifu (pasha, "CENTER")
+    speak (sov_c, 'Stalin',
+    'Gimme succ'
+    )
 
     break
   }

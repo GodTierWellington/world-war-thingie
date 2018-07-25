@@ -5,34 +5,41 @@ displayUI = true
 mouseClick = false
 leftDown = false
 rightDown = false
+upDown = false
+downDown = false
 
 function setup () {
 
   var w = 1200
   var h = 768
 
-
-  background (255, 255, 255)
   createCanvas (w, h)
+  background ('white')
   loadAssets()
-  // Displays the image at its actual size at point (0,0)
 
   drawLevel(0)
-
-
 }
 
-function mouseCollisionDetection (object) {
+function draw () {
+  tick()
+  drawLevel(currentLevel)
+  //story()
+  moveAroundMap ()
+  //console.log (eventIndex)
+}
 
+
+
+function mouseCollisionDetection (object) {
+  //this array meme is pretty unneeded to be honest!
   object.forEach (function (obj) {
     if (mouseX >= obj.posX && mouseX <= obj.posX+obj.width && mouseY >= obj.posY && mouseY <= obj.posY+obj.height) {
       if (mouseClick) {
+        clicked = new displayButton (obj.words, obj.posX_o, obj.posY_o, obj.action, obj.type+"_c")
         eval (obj.action)
         mouseClick = false
       } else {
-        if (obj.width == button_ui.width) {
-          button_selected = new displayButton (obj.words, obj.posX_o, obj.posY_o, obj.action, true)
-        }
+        button_selected = new displayButton (obj.words, obj.posX_o, obj.posY_o, obj.action, obj.type+"_s")
       }
     }
   })
@@ -43,7 +50,42 @@ function mousePressed () {
   mouseClick = true
 }
 
-function drawLevel (lvl){
+function mouseReleased () {
+  mouseClick = false
+}
+
+function keyPressed () {
+  if (keyCode == 32) {
+    displayUI = !displayUI
+  }
+  if (keyCode == 37) {
+    leftDown = true
+  } else if (keyCode == 39) {
+    rightDown = true
+  }
+  if (keyCode == 38) {
+    upDown = true
+  } else if (keyCode == 40) {
+    downDown = true
+  }
+}
+
+function keyReleased () {
+  if (keyCode == 37) {
+    leftDown = false
+  } else if (keyCode == 39) {
+    rightDown = false
+  }
+  if (keyCode == 38) {
+    upDown = false
+  } else if (keyCode == 40) {
+    downDown = false
+  }
+}
+
+
+
+function drawLevel (lvl) {
   switch(lvl){
     case 0:
       image(tower0, 0, 0, width, height)
@@ -59,6 +101,7 @@ function drawLevel (lvl){
 function tick (){
 
 }
+
 
 
 function displayWaifu (img, position) {
@@ -82,7 +125,7 @@ function displayBackground (bkg) {
   image (bkg, 0, 0)
 }
 
-function displayButton (words, posX, posY, action, highlighted) {
+function displayButton (words, posX, posY, action, type) {
 
   this.posX_o = posX
   this.posY_o = posY
@@ -91,15 +134,17 @@ function displayButton (words, posX, posY, action, highlighted) {
   this.width = button_ui.width
   this.height = button_ui.height
   this.action = action
-  this.highlighted = highlighted
   this.words = words
+  this.type = type
 
   //make it turn a different colour when pressed and add this code to the "action" string so that it turns a different colour when clicked
 
-  if (highlighted) {
-    img = button_ui_s
-  } else {
+  if (type == "b") {
     img = button_ui
+  } else if (type == "b_s") {
+    img = button_ui_s
+  } else if (type == "b_c") {
+    img = button_ui_c
   }
 
   image (img, width/2-img.width/2+posX, height/2-img.height/2-posY)
@@ -135,37 +180,15 @@ function speak (colour, name, words) {
     textSize (30)
     fill (255, 255, 255)
     text (words, width/8, height - textbox_ui.height/2 + 15)
-
-    makeChoice ([["Click this!", "console.log ('I have been clicked!')"],
-                ["Click this!", "console.log ('I have been clicked!')"],
-                ["Click this!", "console.log ('I have been clicked!')"]])
   }
 }
-
+//options [words on button, next event]
 function makeChoice (options) {
-
-  for (i = 0; i < options.length; i++) {
-    button = new displayButton (options[i][0], 0, (button_ui.height+30)*(options.length/2-0.5-i), options[i][1])
-    mouseCollisionDetection ([button])
+  if (displayUI == true) {
+    for (i = 0; i < options.length; i++) {
+      _action = "eventIndex = " + options[i][1]
+      button = new displayButton (options[i][0], 0, (button_ui.height+30)*(options.length/2-0.5-i), _action, "b")
+      mouseCollisionDetection ([button])
+    }
   }
-}
-
-function keyPressed () {
-  if (keyCode == 32) {
-    displayUI = !displayUI
-  }
-  if (keyCode == 37) {
-    leftDown = true
-  }
-  if (keyCode == 39) {
-    rightDown = true
-  }
-}
-
-function draw () {
-  tick()
-  drawLevel(currentLevel)
-  story()
-
-  //console.log (eventIndex)
 }

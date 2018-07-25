@@ -7,8 +7,11 @@ function loadAssets () {
     textbox_ui = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/ui/textbox.png")
     button_ui = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/ui/button.png")
     button_ui_s = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/ui/button_selected.png")
+    button_ui_c = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/ui/button_clicked.png")
     //backgrounds
     moscow_b = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/background/moscow.png")
+
+    map = loadImage ("https://upload.wikimedia.org/wikipedia/commons/e/e3/Ww2_allied_axis_1939_sep.PNG")
   }
 
 sov_c = [186, 3, 12]
