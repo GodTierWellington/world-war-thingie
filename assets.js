@@ -6,7 +6,7 @@ function loadAssets () {
 
     textbox_ui = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/ui/textbox.png")
     button_ui = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/ui/button.png")
-    button_ui_s = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/ui/button_s.png")
+    button_ui_s = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/ui/button_selected.png")
     //backgrounds
     moscow_b = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/background/moscow.png")
   }

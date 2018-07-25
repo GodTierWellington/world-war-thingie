@@ -31,7 +31,7 @@ function mouseCollisionDetection (object) {
         mouseClick = false
       } else {
         if (obj.width == button_ui.width) {
-          b1 = new displayButton (obj.words, obj.posX-width/2+obj.width/2, obj.posY+height/2+obj.height/2, obj.action, true)
+          button_selected = new displayButton (obj.words, obj.posX_o, obj.posY_o, obj.action, true)
         }
       }
     }
@@ -84,12 +84,15 @@ function displayBackground (bkg) {
 
 function displayButton (words, posX, posY, action, highlighted) {
 
+  this.posX_o = posX
+  this.posY_o = posY
   this.posX = width/2 - button_ui.width/2 + posX
   this.posY = height/2 - button_ui.height/2 - posY
   this.width = button_ui.width
   this.height = button_ui.height
   this.action = action
   this.highlighted = highlighted
+  this.words = words
 
   //make it turn a different colour when pressed and add this code to the "action" string so that it turns a different colour when clicked
 
@@ -133,11 +136,12 @@ function speak (colour, name, words) {
     fill (255, 255, 255)
     text (words, width/8, height - textbox_ui.height/2 + 15)
 
-    makeChoice ([["Click this!", "console.log ('I have been clicked!')"]])
+    makeChoice ([["Click this!", "console.log ('I have been clicked!')"],
+                ["Click this!", "console.log ('I have been clicked!')"],
+                ["Click this!", "console.log ('I have been clicked!')"]])
   }
 }
 
-//options is an array that contains a string and then an eval statement
 function makeChoice (options) {
 
   for (i = 0; i < options.length; i++) {
