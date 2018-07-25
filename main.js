@@ -44,11 +44,12 @@ function mouseCollisionDetection (object) {
         }
       }
     } else if (obj.type.startsWith ('i')) {
-      console.log (Math.sqrt(Math.pow(mouseX-obj.posX+obj.width/2, 2) + Math.pow(mouseY-obj.posY+obj.width/2, 2)))
-      console.log (obj.width/2)
-      if (Math.sqrt(Math.pow(mouseX-obj.posX, 2) + Math.pow(mouseY-obj.posY, 2)) <= obj.width/2) {
+      if (Math.sqrt(Math.pow(mouseX-(obj.posX+obj.radius), 2) + Math.pow(mouseY-(obj.posY+obj.radius), 2)) <= obj.radius) {
         if (mouseClick) {
           eval (obj.action)
+          mouseClick = false
+        } else {
+          
         }
       }
     }
@@ -147,8 +148,6 @@ function displayButton (words, posX, posY, type, action) {
   this.words = words
   this.type = type
 
-  //make it turn a different colour when pressed and add this code to the "action" string so that it turns a different colour when clicked
-
   if (type == "b") {
     img = button_ui
   } else if (type == "b_s") {
@@ -198,7 +197,7 @@ function makeChoice (options) {
     for (i = 0; i < options.length; i++) {
       _action = "eventIndex = " + options[i][1]
       button = new displayButton (options[i][0], 0, (button_ui.height+30)*(options.length/2-0.5-i), 'b', _action)
-      mouseCollisionDetection ([button], "square")
+      mouseCollisionDetection ([button])
     }
   }
 }

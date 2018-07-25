@@ -13,7 +13,10 @@ function loadAssets () {
 
     map = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/map/map.jpg")
     ussr_i = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/map/ussr_icon.png")
-    
+
+    //sizes override
+    ussr_i.width = 100
+
     sov_c = [186, 3, 12]
     ger_c = [102, 102, 102]
     jap_c = [249, 236, 177]

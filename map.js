@@ -44,5 +44,5 @@ function mapElement (img, posX, posY, type, action) {
   this.posY = posY
   this.action = action
   this.type = type
-  this.width = img.width
+  this.radius = img.width/2
 }
