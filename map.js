@@ -1,9 +1,9 @@
 mapMovementSpeed = 20
 mapPosX = 3000
-mapPosY = 300
+mapPosY = 700
 
 function loadMapElements () {
-  elementList = [new mapElement (ussr_i, 4000, 500, 'i', "console.log ('Yeet')")]
+  elementList = [new mapElement (ussr_i, 4000, 800, 'i', "console.log ('Yeet')")]
 }
 
 function drawMap (elementList) {
@@ -39,7 +39,7 @@ function moveAroundMap () {
   }
   if (upDown && mapPosY > 0) {
     mapPosY -= mapMovementSpeed
-  } else if (downDown && mapPosY < map.height - height - 100) {
+  } else if (downDown && mapPosY < map.height - height - 50) {
     mapPosY += mapMovementSpeed
   }
 
