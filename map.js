@@ -3,7 +3,7 @@ mapPosX = 3000
 mapPosY = 700
 
 function loadMapElements () {
-  elementList = [new mapElement (ussr_i, 4000, 800, 'i', "console.log ('Yeet')")]
+  elementList = [new mapElement (ussr_i, 4000, 800, 'i', "scene = 'sov_event()'")]
 }
 
 function drawMap (elementList) {

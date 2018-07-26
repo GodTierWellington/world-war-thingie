@@ -8,6 +8,8 @@ rightDown = false
 upDown = false
 downDown = false
 
+scene = "map"
+
 function setup () {
 
   var w = 1200
@@ -21,11 +23,20 @@ function setup () {
 }
 
 function draw () {
-  tick()
-  drawLevel(currentLevel)
-  story()
-  //mapMode ()
+  setScene ()
+  //tick()
+  //drawLevel(currentLevel)
+  //story()
   //console.log (eventIndex)
+}
+
+function setScene () {
+  if (scene == "map") {
+    mapMode ()
+  } else {
+    //event
+    eval (scene)
+  }
 }
 
 
@@ -38,6 +49,7 @@ function mouseCollisionDetection (object) {
         if (mouseClick) {
           clicked = new displayButton (obj.words, obj.posX_, obj.posY_, obj.type+"_c", obj.action)
           eval (obj.action)
+          console.log (choices)
           mouseClick = false
         } else {
           button_selected = new displayButton (obj.words, obj.posX_, obj.posY_, obj.type+"_s", obj.action)
@@ -194,10 +206,10 @@ function speak (colour, name, words) {
   }
 }
 //options [words on button, next event]
-function makeChoice (options) {
+function makeChoice (options, currentEvent) {
   if (displayUI == true) {
     for (i = 0; i < options.length; i++) {
-      _action = "eventIndex = " + options[i][1]
+      _action = "eventIndex = " + options[i][1] + "\n choices.push([" + currentEvent + "," + options[i][1] + "])"
       button = new displayButton (options[i][0], 0, (button_ui.height+30)*(options.length/2-0.5-i), 'b', _action)
       mouseCollisionDetection ([button])
     }

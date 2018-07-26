@@ -1,30 +1,40 @@
 eventIndex = 1.0
 girlChosen = []
+choices = []
 
 function story() {
 
-  displayBackground (moscow_b)
-
   //-----------------------------------------------------------------------------------------------------------------------------------
-
-  events ()
 
 }
 
-function change (previous, next) {
+function change (previous, next, nextOverride) {
   if (leftDown) {
     eventIndex = previous
     leftDown = false
   } else if (rightDown) {
-    eventIndex = next
+    if (nextOverride != undefined) {
+      eventIndex = nextOverride
+    } else {
+      eventIndex = next
+    }
     rightDown = false
   }
 }
 
+function setOverride (currentEvent) {
+  for (i = 0; i < choices.length; i++) {
+    if (choices[i][0] == currentEvent) {
+      return choices[i][1]
+    }
+  }
+  return undefined
+}
 
-function events () {
 
+function sov_event () {
 
+  displayBackground (moscow_b)
   switch(eventIndex) {
 
     case 1.0:
@@ -41,12 +51,12 @@ function events () {
 
     case 1.1:
 
-    displayWaifu (sov_girl, "CENTER")
+    displayWaifu (sov_girl_h, "CENTER")
     speak (sov_c, 'Stalin',
     'I am the pasha!'
     )
 
-    change (1.0, 1.2)
+    change (1.0, 1.2, setOverride (1.1))
 
     break
 
@@ -54,7 +64,7 @@ function events () {
 
     makeChoice ([["Click this!", 1.31],
                 ["Click this!", 1.32],
-                ["Click this!", 1.33]])
+                ["Click this!", 1.33]], 1.1)
 
     change (1.1, 1.2)
 
@@ -67,6 +77,8 @@ function events () {
     'Motherland.'
     )
 
+    change (1.1, 1.31)
+
     break
 
     case 1.32:
@@ -76,6 +88,8 @@ function events () {
     'Fat boi, big kebab.'
     )
 
+    change (1.1, 1.32)
+
     break
 
     case 1.33:
@@ -84,6 +98,8 @@ function events () {
     speak (sov_c, 'Stalin',
     'Gimme succ'
     )
+
+    change (1.1, 1.33)
 
     break
   }
