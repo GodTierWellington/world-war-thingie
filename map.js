@@ -13,13 +13,24 @@ function drawMap (elementList) {
 
 function drawElements () {
   elementList.forEach (function (element) {
-    element.posX = element.posX_ - mapPosX
-    element.posY = element.posY_ - mapPosY
-    image (element.img, element.posX, element.posY)
+    displayElement (element)
     mouseCollisionDetection ([element])
   })
 }
 
+function displayElement (element, type) {
+
+  element.posX = element.posX_ - mapPosX
+  element.posY = element.posY_ - mapPosY
+  if (type == 's') {
+    image (element.img.selected, element.posX, element.posY)
+  } else if (type == 'c') {
+    image (element.img.clicked, element.posX, element.posY)
+  } else {
+  image (element.img, element.posX, element.posY)
+  }
+}
+//change so that it just adds a transparent overlay
 function moveAroundMap () {
 
   if (leftDown && mapPosX > 0) {

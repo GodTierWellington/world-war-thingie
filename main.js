@@ -46,15 +46,17 @@ function mouseCollisionDetection (object) {
     } else if (obj.type.startsWith ('i')) {
       if (Math.sqrt(Math.pow(mouseX-(obj.posX+obj.radius), 2) + Math.pow(mouseY-(obj.posY+obj.radius), 2)) <= obj.radius) {
         if (mouseClick) {
+          displayElement (obj, 'c')
           eval (obj.action)
           mouseClick = false
         } else {
-          
+          displayElement (obj, 's')
         }
       }
     }
   })
 }
+
 
 
 function mousePressed () {
@@ -166,7 +168,7 @@ function displayButton (words, posX, posY, type, action) {
   fill (255, 255, 255)
   text (words, width/2 + posX, height/2 + 10 - posY)
 }
-
+//maybe change?
 
 
 function speak (colour, name, words) {
