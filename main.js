@@ -8,12 +8,12 @@ rightDown = false
 upDown = false
 downDown = false
 
+w = 1200
+h = 768
+
 scene = "map"
 
 function setup () {
-
-  var w = 1200
-  var h = 768
 
   loadAssets ()
   createCanvas (w, h)
@@ -40,12 +40,11 @@ function setScene () {
 function mouseCollisionDetection (object) {
   //this array meme is pretty unneeded to be honest!
   object.forEach (function (obj) {
-    if (obj.type.startsWith ('b')) {
+    if (obj.type.startsWith ('b') || obj.type.startsWith ('s')) {
       if (mouseX >= obj.posX && mouseX <= obj.posX+obj.width && mouseY >= obj.posY && mouseY <= obj.posY+obj.height) {
         if (mouseClick) {
           clicked = new displayButton (obj.words, obj.posX_, obj.posY_, obj.type+"_c", obj.action)
           eval (obj.action)
-          console.log (choices)
           mouseClick = false
         } else {
           button_selected = new displayButton (obj.words, obj.posX_, obj.posY_, obj.type+"_s", obj.action)
@@ -150,23 +149,34 @@ function displayButton (words, posX, posY, type, action) {
 
   this.posX_ = posX
   this.posY_ = posY
-  this.posX = width/2 - button_ui.width/2 + posX
-  this.posY = height/2 - button_ui.height/2 - posY
-  this.width = button_ui.width
-  this.height = button_ui.height
   this.action = action
   this.words = words
   this.type = type
 
-  if (type == "b") {
+  if (type.startsWith('b')) {
+    this.width = button_ui.width
+    this.height = button_ui.height
     img = button_ui
-  } else if (type == "b_s") {
-    img = button_ui_s
-  } else if (type == "b_c") {
-    img = button_ui_c
+    if (type.endsWith('s')) {
+      img = button_ui_s
+    } else if (type.endsWith('c')) {
+      img = button_ui_c
+    }
+  } else if (type.startsWith('sb')) {
+    this.width = s_button_ui.width
+    this.height = s_button_ui.height
+    img = s_button_ui
+    if (type.endsWith('s')) {
+      img = s_button_ui_s
+    } else if (type.endsWith('c')) {
+      img = s_button_ui_c
+    }
   }
 
-  image (img, width/2-img.width/2+posX, height/2-img.height/2-posY)
+  this.posX = width/2 - this.width/2 + posX
+  this.posY = height/2 - this.height/2 - posY
+
+  image (img, this.posX, this.posY)
 
   textFont('Georgia')
   stroke (0, 0, 0)

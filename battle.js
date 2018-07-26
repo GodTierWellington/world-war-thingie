@@ -26,7 +26,7 @@ function tank (faction, type, posX, posY, side) {
   this.faction = faction
   this.type = type
   this.posX = posX
-  this.posY = posY+height-grass_texture.height-sov_light.height
+  this.posY = posY+height - grass_texture.height - sov_light.height
   this.posX_ = posX
   this.posY_ = posY
   this.side = side
@@ -34,8 +34,8 @@ function tank (faction, type, posX, posY, side) {
     this.posX_ += this.type.movementSpeed
   }
   this.display = function () {
-    this.posX = this.posX_-battlePosX
-    this.posY = this.posY_+height-grass_texture.height-sov_light.height
+    this.posX = this.posX_ - battlePosX
+    this.posY = this.posY_ + height - grass_texture.height - sov_light.height
     img = eval(this.faction+"_"+this.type.name)
     if (this.side == "r") {
       img = img.r
@@ -50,4 +50,6 @@ function drawBattleField (sizeOfField) {
   for (i = 0; i < Math.ceil(sizeOfField/grass_texture.width); i++) {
     image (grass_texture, i*grass_texture.width-battlePosX, height-grass_texture.height)
   }
+
+  button = new displayButton ("button!", 0, 0, 'sb', "console.log ('end me')")
 }

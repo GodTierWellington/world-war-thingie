@@ -24,6 +24,9 @@ function loadAssets () {
     button_ui = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/ui/button.png")
     button_ui_s = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/ui/button_selected.png")
     button_ui_c = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/ui/button_clicked.png")
+    s_button_ui = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/ui/small_button.png")
+    s_button_ui_s = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/ui/small_button_selected.png")
+    s_button_ui_c = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/ui/small_button_clicked.png")
 
     //backgrounds
     moscow_b = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/background/moscow.png")
@@ -40,6 +43,8 @@ function loadAssets () {
     sov_light.width = 224
     sov_light.height = 105
     sov_light.r = sov_light_r
+    s_button_ui.width = 231
+    s_button_ui.height = 107
 
     sov_c = [186, 3, 12]
     ger_c = [102, 102, 102]

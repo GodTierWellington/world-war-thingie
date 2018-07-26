@@ -83,7 +83,7 @@ function sov_event () {
 
     case 1.32:
 
-    displayWaifu (sov_girl, "CENTER")
+    displayWaifu (stalin_1, "CENTER")
     speak (sov_c, 'Stalin',
     'Fat boi, big kebab.'
     )
@@ -94,7 +94,7 @@ function sov_event () {
 
     case 1.33:
 
-    displayWaifu (sov_girl, "CENTER")
+    displayWaifu (stalin_1, "CENTER")
     speak (sov_c, 'Stalin',
     'Gimme succ'
     )
