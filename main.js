@@ -16,13 +16,13 @@ function setup () {
   var h = 768
 
   loadAssets ()
-  loadMapElements ()
   createCanvas (w, h)
   background ('white')
   drawLevel(0)
 }
 
 function draw () {
+  battleMode (5000)
   //setScene ()
 }
 
