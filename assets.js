@@ -11,7 +11,8 @@ function loadAssets () {
     //battle assets
     grass_texture = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/battle/background/grass_texture.png")
 
-    sov_light = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/battle/tanks/sov_t26.png")
+    sov_light = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/battle/tanks/sov_t26_l.png")
+    sov_light_r = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/battle/tanks/sov_t26_r.png")
 
 
 
@@ -38,6 +39,7 @@ function loadAssets () {
     grass_texture.height = 50
     sov_light.width = 224
     sov_light.height = 105
+    sov_light.r = sov_light_r
 
     sov_c = [186, 3, 12]
     ger_c = [102, 102, 102]
