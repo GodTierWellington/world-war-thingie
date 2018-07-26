@@ -1,6 +1,7 @@
 function loadAssets () {
     //images
-    pasha = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/pasha.jpg")
+    sov_girl = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/girls/sov_girl.png")
+
     tower0 = loadImage("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/level0.png")
     tower1 = loadImage("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/level1.png")
 

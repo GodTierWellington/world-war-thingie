@@ -29,7 +29,7 @@ function events () {
 
     case 1.0:
 
-    displayWaifu (pasha, "CENTER")
+    displayWaifu (sov_girl, "CENTER")
     speak (sov_c, 'Stalin',
     'I like to eat big kebab I like to eat big kebab'
     )
@@ -40,7 +40,7 @@ function events () {
 
     case 1.1:
 
-    displayWaifu (pasha, "CENTER")
+    displayWaifu (sov_girl, "CENTER")
     speak (sov_c, 'Stalin',
     'I am the pasha!'
     )
@@ -61,7 +61,7 @@ function events () {
 
     case 1.31:
 
-    displayWaifu (pasha, "CENTER")
+    displayWaifu (sov_girl, "CENTER")
     speak (sov_c, 'Stalin',
     'Motherland.'
     )
@@ -70,7 +70,7 @@ function events () {
 
     case 1.32:
 
-    displayWaifu (pasha, "CENTER")
+    displayWaifu (sov_girl, "CENTER")
     speak (sov_c, 'Stalin',
     'Fat boi, big kebab.'
     )
@@ -79,7 +79,7 @@ function events () {
 
     case 1.33:
 
-    displayWaifu (pasha, "CENTER")
+    displayWaifu (sov_girl, "CENTER")
     speak (sov_c, 'Stalin',
     'Gimme succ'
     )

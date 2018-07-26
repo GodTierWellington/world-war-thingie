@@ -23,8 +23,8 @@ function setup () {
 function draw () {
   tick()
   drawLevel(currentLevel)
-  //story()
-  moveAroundMap ()
+  story()
+  //moveAroundMap ()
   //console.log (eventIndex)
 }
 
