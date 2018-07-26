@@ -30,7 +30,7 @@ function displayElement (element, type) {
   }
 }
 //change so that it just adds a transparent overlay
-function moveAroundMap () {
+function mapMode () {
 
   if (leftDown && mapPosX > 0) {
     mapPosX -= mapMovementSpeed

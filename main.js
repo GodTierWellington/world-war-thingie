@@ -24,7 +24,7 @@ function draw () {
   tick()
   drawLevel(currentLevel)
   story()
-  //moveAroundMap ()
+  //mapMode ()
   //console.log (eventIndex)
 }
 

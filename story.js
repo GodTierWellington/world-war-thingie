@@ -1,5 +1,5 @@
 eventIndex = 1.0
-
+girlChosen = []
 
 function story() {
 
@@ -29,6 +29,7 @@ function events () {
 
     case 1.0:
 
+    girlChosen.push ("sov")
     displayWaifu (sov_girl, "CENTER")
     speak (sov_c, 'Stalin',
     'I like to eat big kebab I like to eat big kebab'
