@@ -3,7 +3,7 @@ mapPosX = 3000
 mapPosY = 300
 
 function loadMapElements () {
-  elementList = [new mapElement (ussr_i, 4000, 500, "i", "console.log ('Yeet')")]
+  elementList = [new mapElement (ussr_i, 4000, 500, 'i', "console.log ('Yeet')")]
 }
 
 function drawMap (elementList) {
@@ -22,12 +22,11 @@ function displayElement (element, type) {
 
   element.posX = element.posX_ - mapPosX
   element.posY = element.posY_ - mapPosY
-  if (type == 's') {
-    image (element.img.selected, element.posX, element.posY)
-  } else if (type == 'c') {
-    image (element.img.clicked, element.posX, element.posY)
-  } else {
   image (element.img, element.posX, element.posY)
+  if (type == 's' && element.type == 'i') {
+    image (icon_s, element.posX, element.posY)
+  } else if (type == 'c' && element.type == 'i') {
+    image (icon_c, element.posX, element.posY)
   }
 }
 //change so that it just adds a transparent overlay

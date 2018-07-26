@@ -12,14 +12,12 @@ function loadAssets () {
     moscow_b = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/background/moscow.png")
 
     map = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/map/map.jpg")
+    icon_s = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/map/icon_selected.png")
+    icon_c = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/map/icon_clicked.png")
     ussr_i = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/map/ussr_icon.png")
-    ussr_i_s = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/map/ussr_icon_selected.png")
-    ussr_i_c = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/map/ussr_icon_clicked.png")
 
     //sizes override
     ussr_i.width = 100
-    ussr_i.selected = ussr_i_s
-    ussr_i.clicked = ussr_i_c
 
     sov_c = [186, 3, 12]
     ger_c = [102, 102, 102]
