@@ -1,7 +1,11 @@
 function loadAssets () {
     //images
-    sov_girl_h = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/girls/sov_girl_head.png")
-    sov_girl = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/girls/sov_girl_body.png")
+    stalin_h_1 = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/girls/sov_h_1.png")
+    stalin_h_2 = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/girls/sov_h_2.png")
+    stalin_h_3 = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/girls/sov_h_3.png")
+    stalin_1 = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/girls/sov_b_1.png")
+    stalin_2 = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/girls/sov_b_2.png")
+    stalin_3 = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/girls/sov_b_3.png")
 
     tower0 = loadImage("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/level0.png")
     tower1 = loadImage("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/level1.png")

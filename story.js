@@ -40,7 +40,7 @@ function sov_event () {
     case 1.0:
 
     girlChosen.push ("sov")
-    displayWaifu (sov_girl, "CENTER")
+    displayWaifu (stalin_2, "CENTER")
     speak (sov_c, 'Stalin',
     'I like to eat big kebab I like to eat big kebab'
     )
@@ -51,7 +51,7 @@ function sov_event () {
 
     case 1.1:
 
-    displayWaifu (sov_girl_h, "CENTER")
+    displayWaifu (stalin_1, "CENTER")
     speak (sov_c, 'Stalin',
     'I am the pasha!'
     )
@@ -72,7 +72,7 @@ function sov_event () {
 
     case 1.31:
 
-    displayWaifu (sov_girl, "CENTER")
+    displayWaifu (stalin_h_3, "CENTER")
     speak (sov_c, 'Stalin',
     'Motherland.'
     )

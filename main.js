@@ -23,11 +23,7 @@ function setup () {
 }
 
 function draw () {
-  setScene ()
-  //tick()
-  //drawLevel(currentLevel)
-  //story()
-  //console.log (eventIndex)
+  //setScene ()
 }
 
 function setScene () {
