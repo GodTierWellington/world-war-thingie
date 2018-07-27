@@ -40,7 +40,7 @@ function sov_event () {
     case 1.0:
 
     girlChosen.push ("sov")
-    displayWaifu (stalin_2, "CENTER")
+    displayWaifu (stalin_h_1, "CENTER")
     speak (sov_c, 'Stalin',
     'I like to eat big kebab I like to eat big kebab'
     )
