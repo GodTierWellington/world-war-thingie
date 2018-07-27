@@ -73,12 +73,11 @@ function createTank (side, type) {
       allyTanks.push (new Tank (ally, type, -300, 0, 'r'))
     } else if (!canCreateAlly) {
       allyTanksOnHold.push (type)
-      console.log (allyTanksOnHold)
     }
   } else if (side == "enemy") {
     if (enemyTanks.length == 0 || canCreateEnemy) {
-      console.log ("Creating: " + ger + "_" + type.name)
-      enemyTanks.push (new Tank (enemy, type, fieldLength+300-eval(enemy+"_"+type.name).width, 0, 'l'))
+      console.log ("Creating: " + enemy + "_" + type.name)
+      enemyTanks.push (new Tank (enemy, type, fieldLength+300, 0, 'l'))
     } else if (!canCreateEnemy) {
       enemyTanksOnHold.push (type)
     } else {
@@ -116,6 +115,7 @@ function moveTanks () {
     if (canCreateAlly) {
       createTank ("ally", tankType)
       allyTanksOnHold.splice (tankType, 1)
+      canCreateAlly = false
     }
   })
 
@@ -127,8 +127,9 @@ function moveTanks () {
 
   enemyTanksOnHold.forEach (function (tankType) {
     if (canCreateEnemy) {
-      createTank ("ally", tankType)
+      createTank ("enemy", tankType)
       enemyTanksOnHold.splice (tankType, 1)
+      canCreateEnemy = false
     }
   })
 }
@@ -142,7 +143,8 @@ function drawBattleField () {
     image (grass_texture, i*grass_texture.width-battlePosX, height-grass_texture.height)
   }
 
-  button = new displayButton ("button!", 0, 0, 'sb', "createTank ('ally', light_tank)")
-  mouseCollisionDetection ([button])
+  button1 = new displayButton ("Light Tank", -450, 300, 'sb', "createTank ('ally', light_tank)")
+  button2 = new displayButton ("Light Tank", 450, 300, 'sb', "createTank ('enemy', light_tank)")
+  mouseCollisionDetection ([button1, button2])
   moveTanks ()
 }

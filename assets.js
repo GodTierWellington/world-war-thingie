@@ -16,6 +16,8 @@ function loadAssets () {
 
     sov_light = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/battle/tanks/sov_t26_l.png")
     sov_light_r = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/battle/tanks/sov_t26_r.png")
+    ger_light = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/battle/tanks/ger_panzer3_l.png")
+    ger_light_r = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/battle/tanks/ger_panzer3_r.png")
 
 
 
@@ -43,9 +45,15 @@ function loadAssets () {
     ussr_i.width = 100
     grass_texture.width = 100
     grass_texture.height = 50
+
     sov_light.width = 224
     sov_light.height = 105
     sov_light.r = sov_light_r
+
+    ger_light.width = 209
+    ger_light.height = 104
+    ger_light.r = ger_light_r
+
     s_button_ui.width = 231
     s_button_ui.height = 107
 
