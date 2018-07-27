@@ -14,6 +14,8 @@ function loadAssets () {
     //battle assets
     grass_texture = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/battle/background/grass_texture.png")
 
+    bullet = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/battle/bullet.png")
+
     sov_light = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/battle/tanks/sov_t26_l.png")
     sov_light_r = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/battle/tanks/sov_t26_r.png")
     ger_light = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/battle/tanks/ger_panzer3_l.png")

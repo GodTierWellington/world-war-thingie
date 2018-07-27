@@ -26,6 +26,8 @@ function loadBattleElements () {
   enemyTanks = []
   allyTanksOnHold = []
   enemyTanksOnHold = []
+  rounds = []
+  b = undefined
 }
 
 
@@ -34,50 +36,103 @@ function TankClass (movementSpeed, name) {
   this.name = name
 }
 
-function Tank (faction, type, posX, posY, side) {
+function Round (faction, posX, posY) {
+
+  this.faction = faction
+  this.posX = posX
+  this.posY = height - grass_texture.height - posY
+  this.posX_ = posX
+  this.posY_ = posY
+  this.speed = 10
+
+  this.move = function () {
+    if (this.faction == ally) {
+      this.posX_ += this.speed
+    } else if (this.faction == enemy) {
+      this.posX_ -= this.speed
+    }
+  }
+
+  this.display = function () {
+    this.posX = this.posX_ - battlePosX
+    this.posY = -this.posY_ + height - grass_texture.height
+    image (bullet, this.posX, this.posY)
+  }
+}
+
+function Tank (faction, type, posX, posY) {
+
   this.faction = faction
   this.type = type
   this.posX = posX
-  this.posY = posY+height - grass_texture.height - sov_light.height
+  this.posY = height - grass_texture.height - posY
   this.posX_ = posX
   this.posY_ = posY
-  this.side = side
+
   this.move = function () {
-    if (this.side == "r") {
+    if (this.faction == ally) {
       this.posX_ += this.type.movementSpeed
-    } else if (this.side == "l") {
+    } else if (this.faction == enemy) {
       this.posX_ -= this.type.movementSpeed
     }
   }
+  this.combat = function () {
+    rounds.push(new Round (this.faction, this.posX_, 100))
+  }
+
   this.display = function () {
     f = 1
     img = eval(this.faction+"_"+this.type.name)
     this.posX = this.posX_ - battlePosX
-    this.posY = this.posY_ + height - grass_texture.height - img.height
-    if (this.side == "r") {
+    this.posY = -this.posY_ + height - grass_texture.height
+    if (this.faction == ally) {
       img = img.r
-    } else if (this.side == "l") {
+    } else if (this.faction == enemy) {
       f = -1
     }
-    image (img, this.posX, this.posY, img.width*f, img.height)
+
+    if (this.faction == ally) {
+      if (enemyTanks.length == 0) {
+        this.move()
+      }
+      for (i = 0; i < enemyTanks.length; i++) {
+        if (Math.abs(enemyTanks[i].posX_ - this.posX_) < 1000) {
+          this.combat()
+        } else {
+          this.move()
+        }
+      }
+    } else if (this.faction == enemy) {
+      if (allyTanks.length == 0) {
+        this.move()
+      }
+      for (i = 0; i < allyTanks.length; i++) {
+        if (Math.abs(allyTanks[i].posX_ - this.posX_) < 1000) {
+          this.combat()
+        } else {
+          this.move()
+        }
+      }
+    }
+    image (img, this.posX, this.posY, img.width*f, -img.height)
   }
 }
 
 
 
-function createTank (side, type) {
+function createTank (faction, type) {
 
-  if (side == "ally") {
+  if (faction == "ally") {
     if (allyTanks.length == 0 || canCreateAlly) {
       console.log ("Creating: " + ally + "_" + type.name)
-      allyTanks.push (new Tank (ally, type, -300, 0, 'r'))
+      allyTanks.push (new Tank (ally, type, -300, 0))
     } else if (!canCreateAlly) {
       allyTanksOnHold.push (type)
     }
-  } else if (side == "enemy") {
+  } else if (faction == "enemy") {
     if (enemyTanks.length == 0 || canCreateEnemy) {
       console.log ("Creating: " + enemy + "_" + type.name)
-      enemyTanks.push (new Tank (enemy, type, fieldLength+300, 0, 'l'))
+      enemyTanks.push (new Tank (enemy, type, fieldLength+300, 0))
     } else if (!canCreateEnemy) {
       enemyTanksOnHold.push (type)
     } else {
@@ -92,18 +147,26 @@ function moveTanks () {
 
   allyTanks.forEach (function (tank) {
     tank.display ()
-    tank.move ()
     if (tank.posX_> fieldLength+300) {
       allyTanks.splice (tank, 1)
     }
   })
   enemyTanks.forEach (function (tank) {
     tank.display ()
-    tank.move ()
     if (tank.posX_<-300) {
       enemyTanks.splice (tank, 1)
     }
   })
+
+  rounds.forEach (function (round) {
+    round.move ()
+    round.display()
+  })
+
+  createTanksOnHold ()
+}
+
+function createTanksOnHold () {
 
   if (allyTanks.length == 0 || allyTanks[allyTanks.length-1].posX_ >= 0) {
     canCreateAlly = true
