@@ -13,8 +13,8 @@ function battleMode (sizeOfField) {
 }
 
 function loadBattleElements () {
-  tankTypes = [new TankClass (3, "light")]
-  t = new tank ("sov", tankTypes[0], 0, 0, 'r')
+  light_tank = new TankClass (3, "light")
+  t = undefined
 }
 
 function TankClass (movementSpeed, name) {
@@ -51,5 +51,10 @@ function drawBattleField (sizeOfField) {
     image (grass_texture, i*grass_texture.width-battlePosX, height-grass_texture.height)
   }
 
-  button = new displayButton ("button!", 0, 0, 'sb', "console.log ('end me')")
+  button = new displayButton ("button!", 0, 0, 'sb', "t = new tank ('sov', light_tank, -300, 0, 'r')")
+  if (t != undefined) {
+    t.display()
+    t.move()
+  }
+  mouseCollisionDetection ([button])
 }
