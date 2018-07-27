@@ -22,7 +22,7 @@ function setup () {
 }
 
 function draw () {
-  battleMode (5000)
+  battleMode (5000, "sov", "ger")
   //setScene ()
 }
 
