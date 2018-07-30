@@ -17,12 +17,13 @@ function setup () {
 
   loadAssets ()
   createCanvas (w, h)
+  frameRate (60)
   background ('white')
   drawLevel(0)
 }
 
 function draw () {
-  battleMode (2000, "sov", "ger")
+  battleMode (5000, "sov", "ger")
   //setScene ()
 }
 

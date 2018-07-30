@@ -21,45 +21,62 @@ function battleMode (sizeOfField, _ally, _enemy) {
 }
 
 function loadBattleElements () {
-  light_tank = new TankClass (3, "light")
+  sov_light_tank = new TankClass (3, "light", 5, 15)
+  ger_light_tank = new TankClass (5, "light", 7, 15)
+
   allyTanks = []
   enemyTanks = []
   allyTanksOnHold = []
   enemyTanksOnHold = []
   rounds = []
-  b = undefined
 }
 
 
-function TankClass (movementSpeed, name) {
+function TankClass (movementSpeed, name, reloadTime, roundSpeed) {
+
   this.movementSpeed = movementSpeed
   this.name = name
+  this.reloadTime = reloadTime*1000
+  this.roundSpeed = roundSpeed
 }
-
-function Round (faction, posX, posY) {
+//we need to have collision
+function Round (faction, posX, posY, speed, groundPosY) {
 
   this.faction = faction
+  this.groundPosY = groundPosY
   this.posX = posX
   this.posY = height - grass_texture.height - posY
   this.posX_ = posX
   this.posY_ = posY
-  this.speed = 10
+  this.speed = speed
+  this.gravity = 0
 
   this.move = function () {
     if (this.faction == ally) {
       this.posX_ += this.speed
+      this.posY_ -= this.gravity
+      this.gravity += this.speed/1000
     } else if (this.faction == enemy) {
       this.posX_ -= this.speed
+      this.posY_ -= this.gravity
+      this.gravity += this.speed/1000
     }
   }
 
   this.display = function () {
+    f = 1
+    if (this.faction == enemy) {
+      f = -1
+    }
     this.posX = this.posX_ - battlePosX
     this.posY = -this.posY_ + height - grass_texture.height
-    image (bullet, this.posX, this.posY)
+
+    if (this.posX >= -15 && this.posX <= width+15) {
+      image (bullet, this.posX, this.posY, bullet.width*f)
+    }
   }
 }
-
+//we need them to move along the y-axis
 function Tank (faction, type, posX, posY) {
 
   this.faction = faction
@@ -68,6 +85,8 @@ function Tank (faction, type, posX, posY) {
   this.posY = height - grass_texture.height - posY
   this.posX_ = posX
   this.posY_ = posY
+  this.reload = false
+  this.fire = true
 
   this.move = function () {
     if (this.faction == ally) {
@@ -76,45 +95,55 @@ function Tank (faction, type, posX, posY) {
       this.posX_ -= this.type.movementSpeed
     }
   }
-  this.combat = function () {
-    rounds.push(new Round (this.faction, this.posX_, 100))
+
+  this.combat = function (img, f) {
+    if (this.fire) {
+      rounds.push(new Round (this.faction, this.posX_+img.barrelPosX*f, this.posY_+img.barrelPosY, this.type.roundSpeed, this.posY_))
+      this.reload = true
+      this.fire = false
+    }
   }
 
   this.display = function () {
+
     f = 1
     img = eval(this.faction+"_"+this.type.name)
     this.posX = this.posX_ - battlePosX
     this.posY = -this.posY_ + height - grass_texture.height
-    if (this.faction == ally) {
-      img = img.r
-    } else if (this.faction == enemy) {
-      f = -1
-    }
 
     if (this.faction == ally) {
+      _img = img.r
       if (enemyTanks.length == 0) {
         this.move()
       }
       for (i = 0; i < enemyTanks.length; i++) {
         if (Math.abs(enemyTanks[i].posX_ - this.posX_) < 1000) {
-          this.combat()
+          this.combat(img, f)
+          break
         } else {
           this.move()
+          break
         }
       }
     } else if (this.faction == enemy) {
+      f = -1
+      _img = img
       if (allyTanks.length == 0) {
         this.move()
       }
       for (i = 0; i < allyTanks.length; i++) {
         if (Math.abs(allyTanks[i].posX_ - this.posX_) < 1000) {
-          this.combat()
+          this.combat(img, f)
+           break
         } else {
           this.move()
+          break
         }
       }
     }
-    image (img, this.posX, this.posY, img.width*f, -img.height)
+
+    if (this.posX >= -img.width && this.posX <= width+img.width)
+    image (_img, this.posX, this.posY, img.width*f, -img.height)
   }
 }
 
@@ -145,22 +174,44 @@ function createTank (faction, type) {
 
 function moveTanks () {
 
+  rounds.forEach (function (round) {
+    round.move ()
+    round.display()
+
+    if (round.posY_ <= round.groundPosY) {
+      rounds.splice (round, 1)
+    }
+  })
+
   allyTanks.forEach (function (tank) {
+
     tank.display ()
+
+    if (tank.reload) {
+      tank.reload = false
+      setTimeout (function () {
+        tank.fire = true
+      }, tank.type.reloadTime)
+    }
+
     if (tank.posX_> fieldLength+300) {
       allyTanks.splice (tank, 1)
     }
   })
   enemyTanks.forEach (function (tank) {
+
     tank.display ()
+
+    if (tank.reload) {
+      tank.reload = false
+      setTimeout (function () {
+        tank.fire = true
+      }, tank.type.reloadTime)
+    }
+
     if (tank.posX_<-300) {
       enemyTanks.splice (tank, 1)
     }
-  })
-
-  rounds.forEach (function (round) {
-    round.move ()
-    round.display()
   })
 
   createTanksOnHold ()
@@ -198,16 +249,19 @@ function createTanksOnHold () {
 }
 
 
-
 function drawBattleField () {
 
   background (230, 230, 255)
-  for (i = 0; i < Math.ceil(fieldLength/grass_texture.width); i++) {
-    image (grass_texture, i*grass_texture.width-battlePosX, height-grass_texture.height)
+  for (j = 0; j < 4; j++) {
+    for (i = 0; i < Math.ceil(fieldLength/grass_texture.width); i++) {
+      if (i*grass_texture.width-battlePosX >= -grass_texture.width && i*grass_texture.width-battlePosX <= width) {
+        image (grass_texture, i*grass_texture.width-battlePosX, height-grass_texture.height*(j+1))
+      }
+    }
   }
 
-  button1 = new displayButton ("Light Tank", -450, 300, 'sb', "createTank ('ally', light_tank)")
-  button2 = new displayButton ("Light Tank", 450, 300, 'sb', "createTank ('enemy', light_tank)")
+  button1 = new displayButton ("Light Tank", -450, 300, 'sb', "createTank ('ally', sov_light_tank)")
+  button2 = new displayButton ("Light Tank", 450, 300, 'sb', "createTank ('enemy', ger_light_tank)")
   mouseCollisionDetection ([button1, button2])
   moveTanks ()
 }

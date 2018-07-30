@@ -51,10 +51,14 @@ function loadAssets () {
     sov_light.width = 224
     sov_light.height = 105
     sov_light.r = sov_light_r
+    sov_light.barrelPosX = 157
+    sov_light.barrelPosY = 87
 
     ger_light.width = 209
     ger_light.height = 104
     ger_light.r = ger_light_r
+    ger_light.barrelPosX = 144
+    ger_light.barrelPosY = 78
 
     s_button_ui.width = 231
     s_button_ui.height = 107
