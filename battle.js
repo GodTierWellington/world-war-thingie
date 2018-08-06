@@ -21,8 +21,9 @@ function battleMode (sizeOfField, _ally, _enemy) {
 }
 
 function loadBattleElements () {
-  sov_light_tank = new TankClass (3, "light", 5, 15)
-  ger_light_tank = new TankClass (5, "light", 7, 15)
+  //Reminder that the "name" parameter must be what is declared in "assets.js"
+  sov_light_tank = new TankClass (3, "light", 5, 15, 20)
+  ger_light_tank = new TankClass (5, "light", 7, 15, 22)
 
   allyTanks = []
   enemyTanks = []
@@ -32,14 +33,15 @@ function loadBattleElements () {
 }
 
 
-function TankClass (movementSpeed, name, reloadTime, roundSpeed) {
+function TankClass (movementSpeed, name, reloadTime, roundSpeed, health) {
 
   this.movementSpeed = movementSpeed
   this.name = name
   this.reloadTime = reloadTime*1000
   this.roundSpeed = roundSpeed
+  this.health = health
 }
-//we need to have collision
+//we need to have cool stuff happen!
 function Round (faction, posX, posY, speed, groundPosY) {
 
   this.faction = faction
@@ -56,10 +58,37 @@ function Round (faction, posX, posY, speed, groundPosY) {
       this.posX_ += this.speed
       this.posY_ -= this.gravity
       this.gravity += this.speed/1000
+      for (i = 0; i < enemyTanks.length; i++) {
+        //Only works if tanks can't turn around
+        if (Math.abs(this.posX_-(enemyTanks[i].posX_-enemyTanks[i].img.width/2)) <= enemyTanks[i].img.width/2
+            && this.posY_ <= enemyTanks[i].posY_+enemyTanks[i].img.height) {
+          //Damage stats
+          damage = Math.floor(Math.random()*this.speed+1)
+          //The p means piercing, so perhaps we can have explosive damage that
+          //does stuff and then maybe fire damage that continues even after the initial hit
+          typeName = enemyTanks[i].type.name.charAt(0).toUpperCase() + enemyTanks[i].type.name.slice(1)
+          console.log ("Enemy " + typeName + " Hit For: " + damage + "p")
+          enemyTanks[i].health -= damage
+          console.log ("New Enemy Health: " + enemyTanks[i].health)
+          rounds.splice (this, 1)
+          return
+        }
+      }
     } else if (this.faction == enemy) {
       this.posX_ -= this.speed
       this.posY_ -= this.gravity
       this.gravity += this.speed/1000
+      for (i = 0; i < allyTanks.length; i++) {
+        //Only works if tanks can't turn around
+        if (Math.abs(this.posX_-(allyTanks[i].posX_+allyTanks[i].img.width/2)) <= allyTanks[i].img.width/2
+            && this.posY_ <= allyTanks[i].posY_+allyTanks[i].img.height) {
+          //Damage stats
+          damage = Math.floor(Math.random()*this.speed+1)
+          allyTanks[i].health -= damage
+          rounds.splice (this, 1)
+          return
+        }
+      }
     }
   }
 
@@ -68,9 +97,9 @@ function Round (faction, posX, posY, speed, groundPosY) {
     if (this.faction == enemy) {
       f = -1
     }
+    this.move ()
     this.posX = this.posX_ - battlePosX
     this.posY = -this.posY_ + height - grass_texture.height
-
     if (this.posX >= -15 && this.posX <= width+15) {
       image (bullet, this.posX, this.posY, bullet.width*f)
     }
@@ -87,6 +116,8 @@ function Tank (faction, type, posX, posY) {
   this.posY_ = posY
   this.reload = false
   this.fire = true
+  this.img = eval(this.faction+"_"+this.type.name)
+  this.health = this.type.health
 
   this.move = function () {
     if (this.faction == ally) {
@@ -107,43 +138,66 @@ function Tank (faction, type, posX, posY) {
   this.display = function () {
 
     f = 1
-    img = eval(this.faction+"_"+this.type.name)
     this.posX = this.posX_ - battlePosX
     this.posY = -this.posY_ + height - grass_texture.height
 
+    //Allied Tanks
     if (this.faction == ally) {
-      _img = img.r
+      //Check if dead
+      if (this.health <= 0) {
+        typeName = this.type.name.charAt(0).toUpperCase() + this.type.name.slice(1)
+        console.log ("Ally " + typeName + " Destroyed!")
+        allyTanks.splice (this, 1)
+        return
+      }
+
+      //Else move
+      _img = this.img.r
       if (enemyTanks.length == 0) {
         this.move()
-      }
-      for (i = 0; i < enemyTanks.length; i++) {
-        if (Math.abs(enemyTanks[i].posX_ - this.posX_) < 1000) {
-          this.combat(img, f)
-          break
-        } else {
-          this.move()
-          break
+      } else {
+        for (i = 0; i < enemyTanks.length; i++) {
+          if (Math.abs(enemyTanks[i].posX_ - this.posX_) < 1000) {
+            this.combat(this.img, f)
+            break
+          } else {
+            this.move()
+            break
+          }
         }
       }
+    //Enemy Tanks
     } else if (this.faction == enemy) {
+      //Check if dead
+      if (this.health <= 0) {
+        typeName = this.type.name.charAt(0).toUpperCase() + this.type.name.slice(1)
+        console.log ("Enemy " + typeName + " Destroyed!")
+        enemyTanks.splice (this, 1)
+        return
+      }
+
+      //Else move
       f = -1
-      _img = img
+      _img = this.img
       if (allyTanks.length == 0) {
         this.move()
-      }
-      for (i = 0; i < allyTanks.length; i++) {
-        if (Math.abs(allyTanks[i].posX_ - this.posX_) < 1000) {
-          this.combat(img, f)
-           break
-        } else {
-          this.move()
-          break
+      } else {
+        for (i = 0; i < allyTanks.length; i++) {
+          if (Math.abs(allyTanks[i].posX_ - this.posX_) < 1000) {
+            this.combat(this.img, f)
+             break
+          } else {
+            this.move()
+            break
+          }
         }
       }
     }
 
-    if (this.posX >= -img.width && this.posX <= width+img.width)
-    image (_img, this.posX, this.posY, img.width*f, -img.height)
+    //Display Tank
+    if (this.posX >= -this.img.width && this.posX <= width+this.img.width) {
+      image (_img, this.posX, this.posY, this.img.width*f, -this.img.height)
+    }
   }
 }
 
@@ -175,14 +229,13 @@ function createTank (faction, type) {
 function moveTanks () {
 
   rounds.forEach (function (round) {
-    round.move ()
+
     round.display()
 
     if (round.posY_ <= round.groundPosY) {
       rounds.splice (round, 1)
     }
   })
-
   allyTanks.forEach (function (tank) {
 
     tank.display ()

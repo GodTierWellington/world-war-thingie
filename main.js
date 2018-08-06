@@ -23,7 +23,7 @@ function setup () {
 }
 
 function draw () {
-  battleMode (5000, "sov", "ger")
+  battleMode (2000, "sov", "ger")
   //setScene ()
 }
 
@@ -41,7 +41,7 @@ function setScene () {
 function mouseCollisionDetection (object) {
   //this array meme is pretty unneeded to be honest!
   object.forEach (function (obj) {
-    if (obj.type.startsWith ('b') || obj.type.startsWith ('s')) {
+    if (obj.type.startsWith ('b') || obj.type.startsWith ('sb')) {
       if (mouseX >= obj.posX && mouseX <= obj.posX+obj.width && mouseY >= obj.posY && mouseY <= obj.posY+obj.height) {
         if (mouseClick) {
           clicked = new displayButton (obj.words, obj.posX_, obj.posY_, obj.type+"_c", obj.action)
