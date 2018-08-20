@@ -1,47 +1,52 @@
 function loadAssets () {
+
+    //in console: php -S localhost:8000
+    //in chrome: http://localhost:8000/Documents/GitHub/world-war-waifu/index.html
+    //backup: https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/
+
     //images
-    stalin_h_1 = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/girls/sov_h_1.png")
-    stalin_h_2 = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/girls/sov_h_2.png")
-    stalin_h_3 = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/girls/sov_h_3.png")
-    stalin_h_4 = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/girls/sov_h_4.png")
-    stalin_1 = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/girls/sov_b_1.png")
-    stalin_2 = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/girls/sov_b_2.png")
-    stalin_3 = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/girls/sov_b_3.png")
-    stalin_4 = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/girls/sov_b_4.png")
+    zhukov_h_1 = loadImage ("assets/girls/sov_h_1.png")
+    zhukov_h_2 = loadImage ("assets/girls/sov_h_2.png")
+    zhukov_h_3 = loadImage ("assets/girls/sov_h_3.png")
+    zhukov_h_4 = loadImage ("assets/girls/sov_h_4.png")
+    zhukov_1 = loadImage ("assets/girls/sov_b_1.png")
+    zhukov_2 = loadImage ("assets/girls/sov_b_2.png")
+    zhukov_3 = loadImage ("assets/girls/sov_b_3.png")
+    zhukov_4 = loadImage ("assets/girls/sov_b_4.png")
 
 
 
     //battle assets
-    grass_texture = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/battle/background/grass_texture.png")
+    grass_texture = loadImage ("assets/battle/background/grass_texture.png")
 
-    bullet = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/battle/bullet.png")
+    bullet = loadImage ("assets/battle/bullet.png")
 
-    sov_light = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/battle/tanks/sov_t26_l.png")
-    sov_light_r = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/battle/tanks/sov_t26_r.png")
-    ger_light = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/battle/tanks/ger_panzer3_l.png")
-    ger_light_r = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/battle/tanks/ger_panzer3_r.png")
+    sov_light = loadImage ("assets/battle/tanks/sov_t26_l.png")
+    sov_light_r = loadImage ("assets/battle/tanks/sov_t26_r.png")
+    ger_light = loadImage ("assets/battle/tanks/ger_panzer3_l.png")
+    ger_light_r = loadImage ("assets/battle/tanks/ger_panzer3_r.png")
 
 
 
-    tower0 = loadImage("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/level0.png")
-    tower1 = loadImage("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/level1.png")
+    tower0 = loadImage("assets/level0.png")
+    tower1 = loadImage("assets/level1.png")
 
     //ui elements
-    textbox_ui = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/ui/textbox.png")
-    button_ui = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/ui/button.png")
-    button_ui_s = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/ui/button_selected.png")
-    button_ui_c = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/ui/button_clicked.png")
-    s_button_ui = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/ui/small_button.png")
-    s_button_ui_s = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/ui/small_button_selected.png")
-    s_button_ui_c = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/ui/small_button_clicked.png")
+    textbox_ui = loadImage ("assets/ui/textbox.png")
+    button_ui = loadImage ("assets/ui/button.png")
+    button_ui_s = loadImage ("assets/ui/button_selected.png")
+    button_ui_c = loadImage ("assets/ui/button_clicked.png")
+    s_button_ui = loadImage ("assets/ui/small_button.png")
+    s_button_ui_s = loadImage ("assets/ui/small_button_selected.png")
+    s_button_ui_c = loadImage ("assets/ui/small_button_clicked.png")
 
     //backgrounds
-    moscow_b = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/background/moscow.png")
+    moscow_b = loadImage ("assets/background/moscow.png")
 
-    map = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/map/map.jpg")
-    icon_s = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/map/icon_selected.png")
-    icon_c = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/map/icon_clicked.png")
-    ussr_i = loadImage ("https://raw.githubusercontent.com/GodTierWellington/world-war-waifu/master/assets/map/ussr_icon.png")
+    map = loadImage ("assets/map/map.jpg")
+    icon_s = loadImage ("assets/map/icon_selected.png")
+    icon_c = loadImage ("assets/map/icon_clicked.png")
+    ussr_i = loadImage ("assets/map/ussr_icon.png")
 
     //sizes override
     ussr_i.width = 100

@@ -202,7 +202,6 @@ function Tank (faction, type, posX, posY) {
 }
 
 
-
 function createTank (faction, type) {
 
   if (faction == "ally") {

@@ -23,8 +23,8 @@ function setup () {
 }
 
 function draw () {
-  battleMode (2000, "sov", "ger")
-  //setScene ()
+  //battleMode (2000, "sov", "ger")
+  setScene ()
 }
 
 function setScene () {
@@ -182,7 +182,7 @@ function displayButton (words, posX, posY, type, action) {
   textFont('Georgia')
   stroke (0, 0, 0)
   textAlign (CENTER)
-  strokeWeight (4)
+  strokeWeight (5)
   textSize (30)
   fill (255, 255, 255)
   text (words, width/2 + posX, height/2 + 10 - posY)
@@ -200,13 +200,13 @@ function speak (colour, name, words) {
     stroke (0, 0, 0)
 
     textAlign (CENTER)
-    strokeWeight (5)
+    strokeWeight (6)
     textSize (35)
     fill (colour[0], colour[1], colour[2])
     text (name, width/2 - textbox_ui.width/3, height - textbox_ui.height*5/6 + 15)
 
     textAlign (LEFT)
-    strokeWeight (4)
+    strokeWeight (5)
     textSize (30)
     fill (255, 255, 255)
     text (words, width/8, height - textbox_ui.height/2 + 15)

@@ -40,9 +40,9 @@ function sov_event () {
     case 1.0:
 
     girlChosen.push ("sov")
-    displayWaifu (stalin_h_1, "CENTER")
-    speak (sov_c, 'Stalin',
-    'I like to eat big kebab I like to eat big kebab'
+    displayWaifu (zhukov_h_1, "CENTER")
+    speak (sov_c, 'Zhukov',
+    'I want to eat ice cream.'
     )
 
     change (1.0, 1.1)
@@ -51,9 +51,9 @@ function sov_event () {
 
     case 1.1:
 
-    displayWaifu (stalin_1, "CENTER")
-    speak (sov_c, 'Stalin',
-    'I am the pasha!'
+    displayWaifu (zhukov_h_4, "CENTER")
+    speak (sov_c, 'Zhukov',
+    'But no one ever gives me ice cream!!'
     )
 
     change (1.0, 1.2, setOverride (1.1))
@@ -62,9 +62,8 @@ function sov_event () {
 
     case 1.2:
 
-    makeChoice ([["Click this!", 1.31],
-                ["Click this!", 1.32],
-                ["Click this!", 1.33]], 1.1)
+    makeChoice ([["Give ice cream.", 1.31],
+                ["Don't give any.", 1.32]], 1.1)
 
     change (1.1, 1.2)
 
@@ -72,9 +71,9 @@ function sov_event () {
 
     case 1.31:
 
-    displayWaifu (stalin_h_3, "CENTER")
-    speak (sov_c, 'Stalin',
-    'Motherland.'
+    displayWaifu (zhukov_h_1, "CENTER")
+    speak (sov_c, 'Zhukov',
+    'Thank you!'
     )
 
     change (1.1, 1.31)
@@ -83,24 +82,14 @@ function sov_event () {
 
     case 1.32:
 
-    displayWaifu (stalin_1, "CENTER")
-    speak (sov_c, 'Stalin',
-    'Fat boi, big kebab.'
+    displayWaifu (zhukov_3, "CENTER")
+    speak (sov_c, 'Zhukov',
+    'Meanie.'
     )
 
     change (1.1, 1.32)
 
     break
 
-    case 1.33:
-
-    displayWaifu (stalin_1, "CENTER")
-    speak (sov_c, 'Stalin',
-    'Gimme succ'
-    )
-
-    change (1.1, 1.33)
-
-    break
   }
 }
