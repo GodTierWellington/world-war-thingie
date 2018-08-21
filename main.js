@@ -19,13 +19,14 @@ function setup () {
   createCanvas (w, h)
   frameRate (60)
   background ('white')
-  drawLevel(0)
 }
 
 function draw () {
   //battleMode (2000, "sov", "ger")
   setScene ()
 }
+
+
 
 function setScene () {
   if (scene == "map") {
@@ -103,26 +104,6 @@ function keyReleased () {
     downDown = false
   }
 }
-
-
-
-function drawLevel (lvl) {
-  switch(lvl){
-    case 0:
-      image(tower0, 0, 0, width, height)
-      break;
-    case 1:
-      image(tower1, 0, 0, width, height)
-      break;
-    default:
-      console.log("Unkown level");
-  }
-}
-
-function tick (){
-
-}
-
 
 
 function displayWaifu (img, position) {
