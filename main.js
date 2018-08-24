@@ -14,7 +14,6 @@ h = 768
 scene = "map"
 
 function setup () {
-
   loadAssets ()
   createCanvas (w, h)
   frameRate (60)
@@ -22,10 +21,9 @@ function setup () {
 }
 
 function draw () {
-  //battleMode (2000, "sov", "ger")
-  setScene ()
+  battleMode (2000, "sov", "ger")
+  //setScene ()
 }
-
 
 
 function setScene () {
