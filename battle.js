@@ -198,34 +198,34 @@ function Tank (faction, type, posX, posY) {
   allyLeft = false
 
 
-  this.moveX = function () {
+  this.move = function () {
     if (this.faction == ally) {
       this.posX_ += this.movementSpeed
     } else if (this.faction == enemy) {
       this.posX_ -= this.movementSpeed
     }
   }
-
-  this.moveY = function () {
-    this.posY_ += this.movementSpeed
-  }
-
+  //this should include y-axis distance too so that tanks will shoot at the other ones on the same level
   this.getTarget = function () {
-    if (this.target == null) {
-      if (this.faction == ally) {
-        for (i = 0; i < enemyTanks.length; i++) {
-          if (this.target == null || Math.abs(this.posX_ - enemyTanks[i].posX_) < Math.abs(this.posX_ - this.target.posX_)) {
-            this.target = enemyTanks[i]
-          }
+    target = null
+    targetDistance = 0
+    if (this.faction == ally) {
+      for (i = 0; i < enemyTanks.length; i++) {
+        if (target == null || Math.pow(this.posX_ - enemyTanks[i].posX_, 2) + Math.pow(this.posY_ - enemyTanks[i].posY_, 2) < targetDistance) {
+          target = enemyTanks[i]
+          targetDistance = Math.pow(this.posX_ - enemyTanks[i].posX_, 2) + Math.pow(this.posY_ - enemyTanks[i].posY_, 2)
         }
       }
-      if (this.faction == enemy) {
-        for (i = 0; i < allyTanks.length; i++) {
-          if (this.target == null || Math.abs(this.posX_ - allyTanks[i].posX_) < Math.abs(this.posX_ - this.target.posX_)) {
-            this.target = allyTanks[i]
-          }
+      this.target = target
+    }
+    if (this.faction == enemy) {
+      for (i = 0; i < allyTanks.length; i++) {
+        if (target == null || Math.pow(this.posX_ - allyTanks[i].posX_, 2) + Math.pow(this.posY_ - allyTanks[i].posY_, 2) < targetDistance) {
+          target = allyTanks[i]
+          targetDistance = Math.pow(this.posX_ - allyTanks[i].posX_, 2) + Math.pow(this.posY_ - allyTanks[i].posY_, 2)
         }
       }
+      this.target = target
     }
   }
 
@@ -325,12 +325,7 @@ function Tank (faction, type, posX, posY) {
   }
 
   this.combat = function (img, f) {
-    if (this.reload) {
-      this.reload = false
-      setTimeout(() => {
-        this.fire = true
-      }, this.reloadTime)
-    } else if (this.fire) {
+    if (this.fire) {
       this.fire = false
       this.reload = true
       rounds.push(new Round (this, this.posX_+img.barrelPosX*f, this.posY_+img.barrelPosY, this.roundSpeed, this.posY_))
@@ -342,8 +337,12 @@ function Tank (faction, type, posX, posY) {
     this.posX = this.posX_ - battlePosX
     this.posY = height - this.posY_
 
-    if (this.target == null) {
-      this.getTarget ()
+    this.getTarget ()//calls every time (a little inefficient)
+    if (this.reload) {
+      this.reload = false
+      setTimeout(() => {
+        this.fire = true
+      }, this.reloadTime)
     }
 
     //Allied Tanks
@@ -359,7 +358,7 @@ function Tank (faction, type, posX, posY) {
       //Else move
       _img = this.img.r
       if (enemyTanks.length == 0) {
-        this.moveX()
+        this.move()
       } else {
         /*for (i = 0; i < enemyTanks.length; i++) {
           if (Math.abs(enemyTanks[i].posX_ - this.posX_) < 1000) {
@@ -389,7 +388,7 @@ function Tank (faction, type, posX, posY) {
       f = -1
       _img = this.img
       if (allyTanks.length == 0) {
-        this.moveX()
+        this.move()
       } else {
         if (Math.abs(this.target.posX_ - this.posX_) < 1000) {
           this.combat(this.img, f)
@@ -434,6 +433,12 @@ function moveTanks () {
 
   canCreateAlly = true
   canCreateEnemy = true
+  //the round should be displayed not by this function
+  //but by the tank so that it is on the same layer as the tank
+  //to do this the tank struct should have an array of bullets that it created
+  //and it should go through that array to display the bullets on the screen
+  //as well the whole tanks thing should be displayed as a giant array so that
+  //all the tanks will be on their respective layers
   rounds.forEach (function (round) {
 
     round.display()
